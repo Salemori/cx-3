@@ -7,14 +7,14 @@ let nationality = "Nigerian";
 let introduction = `Hello, my name is ${name}, I am ${age} years old, and I am ${nationality}.`;
 console.log(introduction);
 
-// 2a. Favorite quote or lyric
+// 2a. Favorite quote
 let favoriteQuote = "Despise not the days of little beginning";
 
-// 2b. Convert to uppercase
+// 2b. Convert quote to uppercase
 let upperQuote = favoriteQuote.toUpperCase();
 console.log("My favorite Quote in uppercase: ", upperQuote);
 
-// 2c. Convert to lowercase
+// 2c. Convert quote to lowercase
 let lowerQuote = favoriteQuote.toLowerCase();
 console.log("My favorite Quote in lowercase: ", lowerQuote);
 
@@ -50,7 +50,7 @@ let favoriteFoods = ["Pizza", "Jollof Rice", "Burger", "Ice Cream", "Fufu"];
 console.log("First favorite food:", favoriteFoods[0]);
 console.log("Last favorite food:", favoriteFoods[favoriteFoods.length - 1]);
 
-// 7a. Add food items at the beginning and end
+// 7a. Add food items at the beginning and end of favorite foods array
 favoriteFoods.unshift("Shawarma"); 
 favoriteFoods.push("Fried Rice");   
 
