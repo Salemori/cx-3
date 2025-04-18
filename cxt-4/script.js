@@ -1,5 +1,6 @@
-console.log("------------------ One ------------------");
 //1.Examination status function (JAMB-style)
+console.log("------------------ One ------------------");
+
 function examStatus(score) {
     if (Number(score) < 180) {
         return "Failed";
@@ -8,13 +9,14 @@ function examStatus(score) {
 }
 console.log(examStatus(170));
 console.log(examStatus(179.9999));
-console.log(examStatus(20 * 10));
+console.log(examStatus(200));
 console.log(examStatus(180));
 console.log(examStatus(300));
 
-console.log("------------------ Two ------------------");
 
 //2. Vote eligibility funtion
+console.log("------------------ Two ------------------");
+
 function voteEligibility(age) {
     if (Number(age) < 18) {
         return "Not eligible";
@@ -25,9 +27,10 @@ console.log(voteEligibility(11));
 console.log(voteEligibility(17));
 console.log(voteEligibility(50));
 
-console.log("------------------ Three ------------------");
 
 //3. Grade classification function
+console.log("------------------ Three ------------------");
+
 function gradeClassification(name, score) {
     if (Number(score) >= 90) {
         return `${name}: Excellent `;
@@ -44,8 +47,10 @@ console.log(gradeClassification("Mathematics", 80));
 console.log(gradeClassification("Geography", 69));
 console.log(gradeClassification("French", 49.9));
 
-console.log("------------------ Four ------------------");
+
 //4. Access granting function
+console.log("------------------ Four ------------------");
+
 function access(hasID, isAbove18) {
     if (hasID && isAbove18) {
         return "Access granted";
@@ -57,8 +62,10 @@ console.log(access(true, true));
 console.log(access(false, false));
 console.log(access(true, false));
 
-console.log("------------------ Five ------------------");
+
 //5. Grade classification
+console.log("------------------ Five ------------------");
+
 let studentScore = [109, 34, 70, 49, 92];
 
 for (let i = 0; i < studentScore.length; i++) {
@@ -69,8 +76,9 @@ for (let i = 0; i < studentScore.length; i++) {
     }
 }
 
-console.log("------------------ Six ------------------");
+
 //6. Funtion to determine student pass status in Math and English
+console.log("------------------ Six ------------------");
 
 let students = [
     {
@@ -138,10 +146,11 @@ for (let i = 0; i < students.length; i++) {
     console.log(statusFeedback(maths, english));
 }
 
-console.log("------------------ Seven ------------------");
 // 7. Sign-up function
+console.log("------------------ Seven ------------------");
+
 function signUp(email, phoneNumber) {
-    //Reminder: add regular expressions to email
+    
     if (!(email?.trim() || phoneNumber?.trim())) {
         return "Sign-up unsuccessful. A phone number or an email is required.";
     }
@@ -157,7 +166,7 @@ console.log(signUp("joy@gmail.com"));
 console.log("------------------ Eight ------------------");
 
 function validator(username, password) {
-    //Reminder: add regular expressions to email
+    
     if (!(username?.trim() || password?.trim())) {
         return "Invalid input";
     }
