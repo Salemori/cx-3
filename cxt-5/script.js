@@ -45,13 +45,13 @@ const drugs = [
    
 // 1. Get all drugs that are antibiotics
 let antibioticDrugs = drugs.filter(drug => drug.category.includes("Antibiotic") );
-console.log(antibioticDrugs);
+// console.log(antibioticDrugs);
 
 // 2. Return an array of drug names in lowercase.
 let drugNames = drugs.map((drug) =>(
    drug.name.toLocaleLowerCase()
 ));
-console.log(drugNames);
+// console.log(drugNames);
 
 
 // drugs.forEach((drug) =>{
@@ -65,20 +65,26 @@ const drugsInCategory = (array, category) =>{
     return array.filter(arr => arr.category.includes(category));
 }
 
-console.log(drugsInCategory(drugs, "Supplement"));
+// console.log(drugsInCategory(drugs, "Antimalarial"));
 
 
 // 4. Log each drug’s name and its manufacturer.
-
+drugs.forEach((drug) =>{
+    // console.log(`${drug.name}, ${drug.manufacturer}`)
+    // console.log("\n--------------------------------------\n")
+});
 
 
 // 5. Return all drugs that require a prescription.
-
+let requirePrescription = drugs.filter(drug => drug.isPrescriptionOnly === true);
+// console.log(requirePrescription);
 
 
 // 6. Return a new array, each item should follow the format: "Drug: [name] - [dosageMg]mg".
-
-
+let drugDosage = drugs.map(drug =>{
+    return (`Drug: [${[drug.name]}] - [${drug.dosageMg}]mg`)
+})
+console.log(drugDosage);
 
 // 7. Write a function that returns all drugs with a stock less than 50.
 
