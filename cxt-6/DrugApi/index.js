@@ -80,7 +80,6 @@ app.post("/drugs/by-category", (req, res)=>{
     return res.json({data: drugCategory});
 })
 
-
 //4. GET /drugs/names-manufacturers
 app.get("/drugs/names-manufacturers", (req, res)=>{  
     let nameManufacture = drugs.map((drug) =>(
@@ -106,30 +105,33 @@ app.get("/drugs/formatted", (req, res)=>{
 })
 
 //7. GET /drugs/low-stock
-app.get("/", (req, res)=>{
+app.get("/drugs/low-stock", (req, res)=>{
     let lessThanFifty = drugs.filter((drug) => drug.stock < 50);
     return res.json({data: lessThanFifty});
 })
 
-app.get("/", (req, res)=>{
+//8. GET /drugs/non-prescription
+app.get("/drugs/non-prescription", (req, res)=>{
     let notPrescriptionOnly = drugs.filter(drug => drug.isPrescriptionOnly === false);
-    res.json({data: notPrescriptionOnly});
+    return res.json({data: notPrescriptionOnly});
 })
 
-app.get("/", (req, res)=>{
-     let norManufacturer = manufacturer.toLocaleLowerCase();
+//9. POST /drugs/manufacturer-count
+app.post("/drugs/manufacturer-count", (req, res)=>{
+    const {manufacturer} = req.body;
+
+    let norManufacturer = manufacturer.toLocaleLowerCase();
     let numberOfDrugs = drugs.filter(drug => drug.manufacturer.toLocaleLowerCase().includes(norManufacturer));
-    return numberOfDrugs.length;
-
+    
+    return res.json({data: numberOfDrugs.length});
 })
 
-app.get("/", (req, res)=>{
-   
+//10. GET /drugs/count-analgesics
+app.get("/drugs/count-analgesics", (req, res)=>{
+   const analgesic = drugs.filter(drug => drug.category.includes("Analgesic"))
+   return res.json({data: analgesic.length})
 })
-
-
 
 
 const port = "8000";
 app.listen(port, ()=> console.log(`Application listening at http://localhost:${port}`));
-
