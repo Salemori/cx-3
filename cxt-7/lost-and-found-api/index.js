@@ -15,7 +15,7 @@ app.listen(PORT, () =>
   console.log(`Server listening at http://localhost:${PORT}`)
 );
 
-app.get("/items", (req, res) => {
+app.get("/", (req, res) => {
   return res.send("Lost and found server is running.");
 });
 
@@ -65,7 +65,7 @@ app.get("/items/unclaimed-items", async (req, res)=>{
 
 
 // 3c. View one item by ID
-app.get("/items/:id", async (req, res)=>{
+app.get("/items/get-item/:id", async (req, res)=>{
     try {
         const {id} = req.params;
        
@@ -96,6 +96,7 @@ app.get("/items/:id", async (req, res)=>{
 
 // 3d. Update an item’s details or mark as claimed
 app.patch("/items/mark-as-claimed/:id", async (req,res)=>{
+   try {
     const {id} = req.params;
     const {claimed} = req.body;
 
@@ -112,7 +113,6 @@ app.patch("/items/mark-as-claimed/:id", async (req,res)=>{
     if (!updatedItem) {
         console.log(updatedItem);
         return res.status(404).json({
-            status: "failed",
             message: "Item not found",
         });
     }
@@ -121,7 +121,56 @@ app.patch("/items/mark-as-claimed/:id", async (req,res)=>{
         status: "Successful",
         message: "Item updated successfully",
     });
+   } catch (error) {
+        return res.json({
+            message: "Failed",
+            error: error.message
+        })
+   }
 });
 
 
 // 3e. Delete old/irrelevant entries
+app.delete("/items/delete-item/:id", async (req, res)=>{
+    try {
+        const {id} = req.params;
+
+        if(!mongoose.isValidObjectId(id)){
+            return res.status(400).json({message: "Invalid ID format"});
+        }
+
+        const deletedItem = await ItemModel.findByIdAndDelete(id);
+
+        if (!deletedItem) {
+            return res.status(404).json({ message: "Item not found" });
+          }
+      
+        res.status(204).json({
+            status: "Successful",
+            message: "Item updated successfully",
+        });
+    } catch (error) {
+        return res.json({
+            message: "Failed",
+            error: error.message
+        })
+    }
+});
+
+app.get("/items", async (req, res)=>{
+    try {
+        const items = await ItemModel.find();
+
+        return res.status(200).json({
+            message: "Successful",
+            data: items
+        })
+
+    } catch (error) {
+        return res.json({
+            message: "Failed",
+            error: error.message
+        })
+    }
+   
+});
